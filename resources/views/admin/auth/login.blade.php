@@ -23,7 +23,6 @@
                             <!-- begin alet section-->
                             @include('admin.includes.alerts.errors')
                             @include('admin.includes.alerts.success')
-                            
                             <!-- end alet section-->
 
                             <div class="card-content">
@@ -38,9 +37,9 @@
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>
-
-                                            <span class="text-danger"> </span>
-
+                                            @error('email')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                         </fieldset>
                                         <fieldset class="form-group position-relative has-icon-left">
                                             <input type="password" name="password"
@@ -50,7 +49,9 @@
                                             <div class="form-control-position">
                                                 <i class="la la-key"></i>
                                             </div>
-                                            <span class="text-danger"> </span>
+                                            @error('password')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                         </fieldset>
                                         <div class="form-group row">
                                             <div class="col-md-6 col-12 text-center text-md-left">

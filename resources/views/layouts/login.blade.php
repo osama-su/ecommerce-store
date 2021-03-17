@@ -36,7 +36,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/style-rtl.css')}}">
     <!-- END Custom CSS-->
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
-    s
     <style>
         body {
             font-family: 'Cairo', sans-serif;

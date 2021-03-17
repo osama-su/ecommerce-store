@@ -13,6 +13,6 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'],function(){
 
 
 Route::group(['namespace'=>'Admin','middleware'=>'guest:admin'],function(){
-    Route::get('login',[Admin\LoginController::class,'getLogin']);
+    Route::get('login',[Admin\LoginController::class,'getLogin'])->name('get.admin.login');
     Route::post('login',[Admin\LoginController::class,'login'])->name('admin.login');
 });
