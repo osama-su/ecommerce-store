@@ -3,10 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
+define('PAGINATION_COUNT', 10);
 
 
 Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'],function(){
     Route::get('/',[Admin\DashboardController::class,'index'])->name('admin.dashboard');
+    
+    ## Languages Routes
+    Route::group(['prefix'=>'languages'],function(){
+        Route::get('/',[Admin\LanguagesController::class,'index'])->name('admin.languages');
+    });
+    ## End Languages Routes
 });
 
 
