@@ -14,6 +14,8 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'],function(){
         Route::get('/',[Admin\LanguagesController::class,'index'])->name('admin.languages');
         Route::get('create',[Admin\LanguagesController::class,'create'])->name('admin.languages.create');
         Route::post('store',[Admin\LanguagesController::class,'store'])->name('admin.languages.store');
+        Route::get('edit/{id}',[Admin\LanguagesController::class,'edit'])->name('admin.languages.edit');
+        Route::post('update/{id}',[Admin\LanguagesController::class,'update'])->name('admin.languages.update');
     });
     ## End Languages Routes
 });

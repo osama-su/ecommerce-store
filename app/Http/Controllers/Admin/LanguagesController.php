@@ -30,4 +30,27 @@ class LanguagesController extends Controller
         }
 
     }
+
+    public function edit($id)
+    {
+        $language = Language::select()->find($id);
+        if(!$language){
+            return redirect()->route('admin.languages')->with(['error'=>'هذه اللغه غير موجوده']);
+        }
+        return view('admin.languages.edit',compact('language'));
+    }
+    public function update($id,LanguageRequest $request)
+    {
+        try {
+        $language = Language::find($id);
+        if(!$language){
+            return redirect()->route('admin.languages.edit',$id)->with(['error'=>'هذه اللغه غير موجوده']);
+        }
+        $language ->update($request->except('_token'));
+        return redirect()->route('admin.languages')->with(['success'=>'تم التحديث بنجاح']);
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.languages',$id)->with(['error'=>'بهذه اللغه غير موجوده']);
+        }
+        
+    }
 }

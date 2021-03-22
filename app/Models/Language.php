@@ -24,12 +24,12 @@ class Language extends Model
     }
 
     public function scopeSelection($query){
-        return $query->select('abbr','name','direction','active');
+        return $query->select('id','abbr','name','direction','active');
     }
 
-    public function getActiveAttribute($val)
+    public function getActive()
     {
-        return $val == 1 ? 'on' : 'off';
+        return $this->  active    == 1 ? 'on' : 'off';
     }
 
 }
