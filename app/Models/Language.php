@@ -27,4 +27,9 @@ class Language extends Model
         return $query->select('abbr','name','direction','active');
     }
 
+    public function getActiveAttribute($val)
+    {
+        return $val == 1 ? 'on' : 'off';
+    }
+
 }
