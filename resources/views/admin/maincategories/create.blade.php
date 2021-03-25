@@ -43,28 +43,29 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.maincategories.store')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="projectinput1"> صورة القسم </label>
+                                                <input type="file" value="" id="file" class="form-control" placeholder="" name="photo">
+                                                <span class="file-custom"></span>
+                                                @error('photo')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
 
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput1"> صورة القسم </label>
-                                                    <input type="file" value="" id="file" class="form-control" placeholder="" name="photo">
-                                                    <span class="file-custom"></span>
-                                                    @error('photo')
-                                                    <span class="text-danger">{{$message}}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
+
                                             @if (get_languages()->count() > 0 )
-                                            @foreach (get_languages() as $lang)
+                                            @foreach (get_languages() as $index => $lang)
                                             <div class="row">
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1"> {{__('messages.'.$lang->abbr)}} - اسم القسم </label>
-                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[][name]">
-                                                        @error('name')
+                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[{{$index}}][name]">
+                                                        @error("category.$index.name")
                                                         <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </div>
@@ -73,9 +74,9 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput1">  {{__('messages.'.$lang->abbr)}} -أختصار اللغة </label>
-                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[][translation_language]">
-                                                        @error('abbr')
+                                                        <label for="projectinput1"> {{__('messages.'.$lang->abbr)}} -أختصار اللغة </label>
+                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[{{$index}}][translation_language]">
+                                                        @error("category.$index.abbr")
                                                         <span class="text-danger">{{$message}} </span>
                                                         @enderror
                                                     </div>
@@ -85,18 +86,19 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1" name="category[][active]" id="switcheryColor4" class="switchery" data-color="success" checked />
+                                                        <input type="checkbox" value="1" name="category[{{$index}}][active]" id="switcheryColor4" class="switchery" data-color="success" checked />
                                                         <label for="switcheryColor4" class="card-title ml-1">الحالة-{{__('messages.'.$lang->abbr)}} </label>
 
-                                                        @error('active')
+                                                        @error("category.$index.active")
                                                         <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
+                                            @endif
                                         </div>
-                                        @endforeach
-                                        @endif
+
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1" onclick="history.back();">
                                                 <i class="ft-x"></i> تراجع

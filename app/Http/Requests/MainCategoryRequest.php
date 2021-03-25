@@ -24,7 +24,11 @@ class MainCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|mimes:jpg,jpeg,png'
+            'photo' => 'required|mimes:jpg,jpeg,png',
+            'category' => 'required|array|min:1',
+            'category.*.name' => 'required',
+            'category.*.abbr' => 'required',
+            'category.*.active' => 'required',
         ];
     }
 }
