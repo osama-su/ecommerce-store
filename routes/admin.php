@@ -41,7 +41,3 @@ Route::group(['namespace'=>'Admin','middleware'=>'guest:admin'],function(){
 });
 
 
-Route::get('/test',function ()
-{
-   return show_name();
-});

@@ -16,4 +16,13 @@ class MainCategoriesController extends Controller
 
        return view('admin.maincategories.index',compact($categories));
     }
+    public function create()
+    {
+        return view('admin.maincategories.create');
+    }
+
+    public function store()
+    {
+        
+    }
 }
