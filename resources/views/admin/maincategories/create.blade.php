@@ -75,7 +75,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1"> {{__('messages.'.$lang->abbr)}} -أختصار اللغة </label>
-                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[{{$index}}][translation_language]">
+                                                        <input type="text" value="" id="name" class="form-control" placeholder="" name="category[{{$index}}][abbr]">
                                                         @error("category.$index.abbr")
                                                         <span class="text-danger">{{$message}} </span>
                                                         @enderror
