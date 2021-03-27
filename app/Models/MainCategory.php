@@ -22,16 +22,20 @@ class MainCategory extends Model
         'updated_at',
     ];
 
-    public function scopeActive($query){
-        return $query->where('active',1);
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
     }
     public function scopeSelection($query)
     {
-        return $query->select('id','translation_language','name','slug','photo','active');
+        return $query->select('id', 'translation_language', 'name', 'slug', 'photo', 'active');
     }
     public function getActive()
     {
-        $this->active == 1 ? 'on' : 'off';
+        return $this->active == 1 ? 'on' : 'off';
     }
-
+    public function getPhotoAttribute($val)
+    {
+        return $val !== null ? asset('../assets/'.$val) : "";
+    }
 }
