@@ -74,4 +74,27 @@ class MainCategoriesController extends Controller
             //throw $th;
         }
     }
+    public function edit($mainCat_id)
+    {
+        $mainCategory = MainCategory::selection()->find($mainCat_id);
+        if (!$mainCategory)
+            return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود']);
+        return view('admin.maincategories.edit', compact('mainCategory'));
+    }
+    public function update($mainCat_id, MainCategoryRequest $request)
+    {
+        //return $request;
+        $main_category = MainCategory::find($mainCat_id);
+        if (!$main_category)
+            return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود']);
+
+        $category = array_values($request->category)[0];
+        MainCategory::where('id', $mainCat_id)
+            ->update(
+                [
+                    'name' => $category['name']
+                ]
+            );
+        return redirect()->route('admin.maincategories')->with(['success' => 'تم التحديث بنجاح']);
+    }
 }
