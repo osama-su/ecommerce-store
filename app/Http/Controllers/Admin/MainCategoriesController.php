@@ -83,18 +83,45 @@ class MainCategoriesController extends Controller
     }
     public function update($mainCat_id, MainCategoryRequest $request)
     {
-        //return $request;
-        $main_category = MainCategory::find($mainCat_id);
-        if (!$main_category)
-            return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود']);
 
-        $category = array_values($request->category)[0];
-        MainCategory::where('id', $mainCat_id)
-            ->update(
-                [
-                    'name' => $category['name']
-                ]
-            );
-        return redirect()->route('admin.maincategories')->with(['success' => 'تم التحديث بنجاح']);
+        try {
+            //return $request;
+            $main_category = MainCategory::find($mainCat_id);
+            if (!$main_category)
+                return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود']);
+
+            $category = array_values($request->category)[0];
+            if (!$request->has('category.0.active'))
+                $request->request->add(['active' => 0]);
+            else
+                $request->request->add(['active' => 1]);
+
+
+            MainCategory::where('id', $mainCat_id)
+                ->update(
+                    [
+                        'name' => $category['name'],
+                        'active' => $request->active,
+
+                    ]
+                );
+            //image upload
+            //$filePath = $main_category->photo;
+            if ($request->has('photo')) {
+                $filePath = uploadImage('maincategories', $request->photo);
+                MainCategory::where('id', $mainCat_id)
+                    ->update(
+                        [
+                            'photo' => $filePath,
+
+                        ]
+                    );
+            }
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم التحديث بنجاح']);
+        } catch (\Throwable $th) {
+
+            return redirect()->route('admin.maincategories')->with(['success' => 'حدث خطأ ما']);
+            //throw $th;
+        }
     }
 }
