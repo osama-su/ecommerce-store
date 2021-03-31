@@ -66,7 +66,7 @@
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
 
-                                            
+
                                             <div class="row">
 
                                                 <div class="col-md-12">
@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
 
                                         <div class="form-actions">
@@ -116,6 +116,87 @@
 
                                         </div>
                                     </form>
+                                    <ul class="nav nav-tabs">
+                                        @isset($mainCategory->categories)
+                                        @foreach($mainCategory->categories as $index => $translation)
+                                        <li class="nav-item">
+                                            <a class="nav-link @if($index==0) active @endif" id="homeLable-tab" data-toggle="tab" href="#homeLable{{$index}}" aria-controls="homeLable" aria-expanded="$index==0 ? 'true' : 'false'">
+                                                {{$translation->translation_language}}</a>
+                                        </li>
+                                        @endforeach
+                                        @endisset
+                                    </ul>
+
+                                    
+                                    <div class="tab-content px-1 pt-1">
+                                    
+                                    @foreach($mainCategory->categories as $index => $translation)
+                                        <div role="tabpanel" class="tab-pane @if($index==0) active @endif" id="homeLable{{$index}}" aria-labelledby="homeLable-tab" aria-expanded="$index==0 ? 'true' : 'false'">
+                                            <form class="form" action="{{route('admin.maincategories.update',$translation->id)}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input name="id" value="{{ $translation->id }}" hidden>
+
+                                                <div class="form-body">
+                                                    <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1"> {{__('messages.'.$translation->translation_language)}} - اسم القسم </label>
+                                                                <input type="text" value="{{ $translation->name }}" id="name" class="form-control" placeholder="" name="category[0][name]">
+                                                                @error("category.0.name")
+                                                                <span class="text-danger">{{$message}}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 hidden">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1"> {{__('messages.'.$translation->translation_language)}} -أختصار اللغة </label>
+                                                                <input type="text" value="{{ $translation -> translation_language }}" id="name" class="form-control" placeholder="" name="category[0][abbr]">
+                                                                @error("category.0.abbr")
+                                                                <span class="text-danger">{{$message}} </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group mt-1">
+                                                                <input type="checkbox" value="1" name="category[0][active]" id="switcheryColor4" class="switchery" data-color="success" checked />
+                                                                <label for="switcheryColor4" class="card-title ml-1">الحالة-{{__('messages.'.$translation->translation_language)}} </label>
+
+                                                                @error("category.0.active")
+                                                                <span class="text-danger">{{$message}}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-actions">
+                                                    <button type="button" class="btn btn-warning mr-1" onclick="history.back();">
+                                                        <i class="ft-x"></i> تراجع
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> تحديث
+                                                    </button>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        @endforeach
+                                        
+                                    </div>
+                                   
+
+
                                 </div>
                             </div>
                         </div>
