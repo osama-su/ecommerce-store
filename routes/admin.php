@@ -30,6 +30,17 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
     });
     ## End Main Categories Routes ##
+
+    ## Vendors Routes ##
+    Route::group(['prefix' => 'main_categories'], function () {
+        Route::get('/', [Admin\MainCategoriesController::class, 'index'])->name('admin.maincategories');
+        Route::get('create', [Admin\MainCategoriesController::class, 'create'])->name('admin.maincategories.create');
+        Route::post('store', [Admin\MainCategoriesController::class, 'store'])->name('admin.maincategories.store');
+        Route::get('edit/{id}', [Admin\MainCategoriesController::class, 'edit'])->name('admin.maincategories.edit');
+        Route::post('update/{id}', [Admin\MainCategoriesController::class, 'update'])->name('admin.maincategories.update');
+        Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
+    });
+    ## End Vendors Routes ##
 });
 
 
