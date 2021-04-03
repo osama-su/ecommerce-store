@@ -10,7 +10,7 @@
                                    <span class="badge badge badge-info badge-pill float-right mr-2">{{ App\Models\Language::count() }}</span>
                             </a>
                             <ul class="menu-content">
-                                   <li class="active"><a class="menu-item" href="{{route('admin.languages')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                   <li class=><a class="menu-item" href="{{route('admin.languages')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                    </li>
                                    <li><a class="menu-item" href="{{route('admin.languages.create')}}" data-i18n="nav.dash.crypto">أضافة
                                                  لغه جديده </a>
@@ -24,7 +24,7 @@
                                    <span class="badge badge badge-danger badge-pill float-right mr-2">{{ App\Models\MainCategory::count() }}</span>
                             </a>
                             <ul class="menu-content">
-                                   <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                   <li class=><a class="menu-item" href="{{route('admin.maincategories')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                    </li>
                                    <li><a class="menu-item" href="{{route('admin.maincategories.create')}}" data-i18n="nav.dash.crypto">أضافة
                                                  قسم جديد </a>
@@ -33,14 +33,14 @@
                      </li>
 
                      <li class="nav-item"><a href=""><i class="la la-male"></i>
-                                   <span class="menu-title" data-i18n="nav.dash.main">المدربين </span>
+                                   <span class="menu-title" data-i18n="nav.dash.main">المتاجر </span>
                                    <span class="badge badge badge-success badge-pill float-right mr-2"></span>
                             </a>
                             <ul class="menu-content">
-                                   <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                   <li class=><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                    </li>
-                                   <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                                                 مدرب </a>
+                                   <li><a class="menu-item" href="" data-i18n="nav.dash.crypto"> أضافة متجر
+                                                  </a>
                                    </li>
                             </ul>
                      </li>
@@ -51,7 +51,7 @@
                                    <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>
                             </a>
                             <ul class="menu-content">
-                                   <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                   <li class=><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                    </li>
                                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
                                                  طالب </a>
@@ -66,7 +66,7 @@
                                    <span class="badge badge badge-danger  badge-pill float-right mr-2">0</span>
                             </a>
                             <ul class="menu-content">
-                                   <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
+                                   <li ><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
                                    </li>
                             </ul>
                      </li>
