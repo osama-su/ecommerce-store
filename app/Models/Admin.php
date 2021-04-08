@@ -36,5 +36,7 @@ class Admin extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
+    public function scopeSelection($query){
+        return $query->select('id','name');
+    }
 }
