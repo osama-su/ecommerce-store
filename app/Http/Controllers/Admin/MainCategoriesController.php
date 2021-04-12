@@ -70,8 +70,8 @@ class MainCategoriesController extends Controller
             return redirect()->route('admin.maincategories')->with(['success' => 'تم الحفظ بنجاح']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('admin.maincategories')->with(['success' => 'حدث خطأ ما']);
-            //throw $th;
+            //return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطأ ما']);
+            throw $th;
         }
     }
     public function edit($mainCat_id)
@@ -123,7 +123,7 @@ class MainCategoriesController extends Controller
             return redirect()->route('admin.maincategories')->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Throwable $th) {
 
-            return redirect()->route('admin.maincategories')->with(['success' => 'حدث خطأ ما']);
+            return redirect()->route('admin.maincategories')->with(['erorr' => 'حدث خطأ ما']);
             //throw $th;
         }
     }
