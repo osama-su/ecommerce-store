@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Language;
 use App\Http\Requests\LanguageRequest;
+use App\Models\Admin;
 
 class LanguagesController extends Controller
 {
     public function index()
     {
+        $admins = Admin::select('id','name')->get();
         $languages = Language::select()->paginate(PAGINATION_COUNT);
-        return view('admin.languages.index',compact('languages'));
+        return view('admin.languages.index',compact('languages','admins'));
     }
     public function create()
     {
