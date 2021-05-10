@@ -29,7 +29,7 @@ class VendorRequest extends FormRequest
             'mobile' => 'required|max:20',
             'email' => 'sometimes|nullable|email',
             'category_id'=> 'required|exists:main_categories,id',
-            //'address'=> 'required|string|max:500',
+            'address'=> 'required|string|max:500',
         ];
     }
     public function messages()

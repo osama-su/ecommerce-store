@@ -13,7 +13,7 @@ class VendorsController extends Controller
     public function index()
     {
         $vendors = Vendor::selection()->paginate(PAGINATION_COUNT);
-        return view('admin.vendors.index', compact($vendors));
+        return view('admin.vendors.index', compact('vendors'));
     }
     public function create()
     {
@@ -23,13 +23,32 @@ class VendorsController extends Controller
     public function store(VendorRequest $request)
     {
         try {
-            //make validation
-
-            //insert into database
-
+            //check box 
+            if (!$request->has('active')) {
+                $request->request->add(['active' => 0]);
+            } else
+                $request->request->add(['active' => 1]);
+            //upload logo
+            $filePath = "";
+            if ($request->has('logo')) {
+                $filePath = uploadImage('vendors', $request->logo);
+            }
+            //save to database
+            Vendor::create([
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'email' => $request->email,
+                'active' => $request->active,
+                'address' => $request->address,
+                'logo' => $filePath,
+                'category_id' => $request->category_id,
+            ]);
             //redirect
+            return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
         } catch (\Throwable $th) {
-            //throw $th;
+            //return redirect()->route('admin.vendors')->with(['error' => 'حدث خطأ ما']);
+
+            throw $th;
         }
     }
     public function edit()
@@ -40,5 +59,6 @@ class VendorsController extends Controller
     }
     public function changeStatus()
     {
+
     }
 }
