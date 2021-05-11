@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\MainCategory;
 use App\Models\Vendor;
+use App\Notifications\VendorCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class VendorsController extends Controller
 {
@@ -34,7 +36,7 @@ class VendorsController extends Controller
                 $filePath = uploadImage('vendors', $request->logo);
             }
             //save to database
-            Vendor::create([
+            $vendor = Vendor::create([
                 'name' => $request->name,
                 'mobile' => $request->mobile,
                 'email' => $request->email,
@@ -43,6 +45,9 @@ class VendorsController extends Controller
                 'logo' => $filePath,
                 'category_id' => $request->category_id,
             ]);
+            // send notification 
+            //Notification::send($vendor, new VendorCreated($vendor));
+           
             //redirect
             return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
         } catch (\Throwable $th) {
