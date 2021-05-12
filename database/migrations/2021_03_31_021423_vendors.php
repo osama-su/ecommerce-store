@@ -19,7 +19,8 @@ class Vendors extends Migration
             $table->string('logo');
             $table->string('mobile');
             $table->string('address');
-            $table->string('email')->nullable();
+            $table->string('email');
+            $table->string('password');
             $table->foreignId('category_id')->nullable();
             $table->string('active');
             $table->timestamps();

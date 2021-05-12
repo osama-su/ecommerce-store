@@ -26,8 +26,9 @@ class VendorRequest extends FormRequest
         return [
             'logo' => 'required_without:id|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:100',
-            'mobile' => 'required|max:20',
-            'email' => 'sometimes|nullable|email',
+            'mobile' => 'required|unique:vendors,mobile|max:20',
+            'email' => 'required|unique:vendors,email|email',
+            'password' => 'required|string|min:6',
             'category_id'=> 'required|exists:main_categories,id',
             'address'=> 'required|string|max:500',
         ];

@@ -113,6 +113,9 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
+
                                                 <div class="col-md-6">
                                                     <div class="form-group mt-1">
                                                         <input type="checkbox" value="1" name="active" id="switcheryColor4" class="switchery" data-color="success" checked />
@@ -123,7 +126,15 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">كلمه المرور</label>
+                                                        <input type="password" id="password" class="form-control" placeholder="" name="password">
+                                                        @error("password")
+                                                        <span class="text-danger">{{$message}} </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
 
 
                                             </div>

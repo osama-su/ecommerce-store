@@ -40,6 +40,7 @@ class VendorsController extends Controller
                 'name' => $request->name,
                 'mobile' => $request->mobile,
                 'email' => $request->email,
+                'password'=>$request->password,
                 'active' => $request->active,
                 'address' => $request->address,
                 'logo' => $filePath,
