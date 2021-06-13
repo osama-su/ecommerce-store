@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
+use App\Models\Admin;
 use App\Models\MainCategory;
 use App\Models\Vendor;
 use App\Notifications\VendorCreated;
@@ -14,8 +15,9 @@ class VendorsController extends Controller
 {
     public function index()
     {
+        $admins = Admin::select('id','name')->get();
         $vendors = Vendor::selection()->paginate(PAGINATION_COUNT);
-        return view('admin.vendors.index', compact('vendors'));
+        return view('admin.vendors.index', compact('vendors','admins'));
     }
     public function create()
     {
@@ -57,8 +59,18 @@ class VendorsController extends Controller
             throw $th;
         }
     }
-    public function edit()
+    public function edit($id)
     {
+        try {
+            $vendor = Vendor::Selection()->find($id);
+            if (!$vendor) {
+                return redirect()->route('admin.vendors')->with(['error' => 'هذا المتجر غير موجود ']);
+            }
+            $categories = MainCategory::where('translation_of', 0)->active()->get();
+            return view('admin.vendors.edit', compact('vendor','categories'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function update()
     {

@@ -40,7 +40,7 @@ class Vendor extends Model
     }
     public function scopeSelection($query)
     {
-       return $query->select('id','category_id','name','logo','mobile');
+       return $query->select('id','category_id','active', 'name','address','email','logo','mobile');
     }
     public function category()
     {

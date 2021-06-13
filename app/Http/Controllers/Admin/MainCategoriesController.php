@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCategoryRequest;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\MainCategory;
 use Illuminate\Support\Facades\Config;
@@ -13,9 +14,10 @@ class MainCategoriesController extends Controller
 {
     public function index()
     {
+        $admins = Admin::select('id','name')->get();
         $default_lang = get_default_lang();
         $categories = MainCategory::where('translation_language', $default_lang)->selection()->get();
-        return view('admin.maincategories.index', compact('categories'));
+        return view('admin.maincategories.index', compact('categories','admins'));
     }
     public function create()
     {
