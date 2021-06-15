@@ -43,7 +43,7 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.vendors.update', $vendor->id)}}" method="POST" enctype="multipart/form-data">
                                         @csrf
-
+                                        <input type="hidden" name="id" value="{{$vendor->id}}">
                                         <div class="form-group">
                                             <div class="text-center">
                                                 <img src="{{ $vendor->logo }}" class="rounded-circle hight-150" alt="صورة القسم">

@@ -26,17 +26,16 @@ class VendorRequest extends FormRequest
         return [
             'logo' => 'required_without:id|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:100',
-            'mobile' => 'required|unique:vendors,mobile|max:20',
-            'email' => 'required|unique:vendors,email|email',
+            'mobile' => 'required|max:20|unique:vendors,mobile,' . $this->id,
+            'email' => 'required|email|unique:vendors,email,' . $this->id,
             'password' => 'required|string|min:6',
-            'category_id'=> 'required|exists:main_categories,id',
-            'address'=> 'required|string|max:500',
+            'category_id' => 'required|exists:main_categories,id',
+            'address' => 'required|string|max:500',
+            'password' => 'required_without:id|string|min:6',
         ];
     }
     public function messages()
     {
-        return [
-            
-        ];
+        return [];
     }
 }
