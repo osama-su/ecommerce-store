@@ -4,7 +4,7 @@
 /storage/*.key
 /vendor
 # ignore images 
-/assets/images
+/public/assets/images
 .env
 .env.backup
 .phpunit.result.cache
