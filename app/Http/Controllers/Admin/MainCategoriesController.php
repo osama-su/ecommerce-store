@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\MainCategory;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class MainCategoriesController extends Controller
 {
@@ -141,6 +142,10 @@ class MainCategoriesController extends Controller
             if (isset($vendors)&& $vendors->count()>0) {
                 return redirect()->route('admin.maincategories', $id)->with(['error' => 'you canot delete this cat']);
             }
+            //delete the photo from folder
+            
+            unlink(base_path('assets/'.Str::after($mainCategory->photo,'assets/')));
+
             $mainCategory->delete();
             return redirect()->route('admin.maincategories')->with(['success' => 'تم الحذف بنجاح']);
         } catch (\Throwable $th) {

@@ -11,6 +11,7 @@ use App\Notifications\VendorCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class VendorsController extends Controller
 {
@@ -117,6 +118,10 @@ class VendorsController extends Controller
             if (!$vendor) {
                 return redirect()->route('admin.vendors', $id)->with(['error' => 'هذا القسم غير موجود']);
             }
+             //delete the logo from folder
+            
+             unlink(base_path('assets/'. Str::after($vendor->logo,'assets/')));
+
             $vendor->delete();
             return redirect()->route('admin.vendors')->with(['success' => 'تم الحذف بنجاح']);
         } catch (\Throwable $th) {
