@@ -110,6 +110,20 @@ class VendorsController extends Controller
             throw $th;
         }
     }
+    public function destroy($id)
+    {
+        try {
+            $vendor = Vendor::find($id);
+            if (!$vendor) {
+                return redirect()->route('admin.vendors', $id)->with(['error' => 'هذا القسم غير موجود']);
+            }
+            $vendor->delete();
+            return redirect()->route('admin.vendors')->with(['success' => 'تم الحذف بنجاح']);
+        } catch (\Throwable $th) {
+            
+            //return redirect()->route('admin.maincategories')->with(['error' => 'بهذه اللغه غير موجودبه']);
+        }
+    }
     public function changeStatus()
     {
     }

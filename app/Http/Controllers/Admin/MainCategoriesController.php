@@ -129,4 +129,23 @@ class MainCategoriesController extends Controller
             //throw $th;
         }
     }
+    public function destroy($id)
+    {
+        try {
+            $mainCategory = MainCategory::find($id);
+            if (!$mainCategory) {
+                return redirect()->route('admin.maincategories', $id)->with(['error' => 'هذا القسم غير موجود']);
+            }
+            //check if cat has vendors 
+            $vendors =$mainCategory->vendors();
+            if (isset($vendors)&& $vendors->count()>0) {
+                return redirect()->route('admin.maincategories', $id)->with(['error' => 'you canot delete this cat']);
+            }
+            $mainCategory->delete();
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم الحذف بنجاح']);
+        } catch (\Throwable $th) {
+            throw $th;
+            //return redirect()->route('admin.maincategories')->with(['error' => 'بهذه اللغه غير موجودبه']);
+        }
+    }
 }
