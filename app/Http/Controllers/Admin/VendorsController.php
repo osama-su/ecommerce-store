@@ -129,7 +129,18 @@ class VendorsController extends Controller
             //return redirect()->route('admin.maincategories')->with(['error' => 'بهذه اللغه غير موجودبه']);
         }
     }
-    public function changeStatus()
+    public function changeStatus($id)
     {
+        try {
+            $vendor = Vendor::find($id);
+            if (!$vendor) {
+                return redirect()->route('admin.vendors', $id)->with(['error' => 'هذا القسم غير موجود']);
+            }
+            $newStatus = $vendor->active == 0 ? 1 : 0;
+            $vendor->update(['active'=>$newStatus]);
+            return redirect()->route('admin.vendors')->with(['success' => 'تم تغيير الحاله']);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

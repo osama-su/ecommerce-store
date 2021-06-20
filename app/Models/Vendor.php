@@ -20,6 +20,7 @@ class Vendor extends Model
         'logo',
         'category_id',
         'active',
+        'password',
         'created_at',
         'updated_at',
     ];

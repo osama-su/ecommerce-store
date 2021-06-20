@@ -38,7 +38,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
         Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
         Route::get('changeStatus/{id}', [Admin\MainCategoriesController::class, 'changeStatus'])->name('admin.maincategories.changeStatus');
-
     });
     ## End Main Categories Routes ##
 
@@ -50,6 +49,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::get('edit/{id}', [Admin\VendorsController::class, 'edit'])->name('admin.vendors.edit');
         Route::post('update/{id}', [Admin\VendorsController::class, 'update'])->name('admin.vendors.update');
         Route::get('delete/{id}', [Admin\VendorsController::class, 'destroy'])->name('admin.vendors.delete');
+        Route::get('changeStatus/{id}', [Admin\VendorsController::class, 'changeStatus'])->name('admin.vendors.changeStatus');
     });
     ## End Vendors Routes ##
 });
