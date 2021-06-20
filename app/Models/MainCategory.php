@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Observers\MainCategoryObserver;
 class MainCategory extends Model
 {
     use HasFactory;
@@ -21,6 +21,12 @@ class MainCategory extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        MainCategory::observe(MainCategoryObserver::class);
+    }
 
     public function scopeActive($query)
     {
