@@ -6,6 +6,14 @@ use App\Http\Controllers\Admin;
 define('PAGINATION_COUNT', 10);
 
 
+/*
+|--------------------------------------------------------------------------
+| Authinticated Admins 
+|--------------------------------------------------------------------------
+|
+| 
+*/
+
 Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -44,6 +52,14 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
 });
 
 
+
+/*
+|--------------------------------------------------------------------------
+| Guest Admins 
+|--------------------------------------------------------------------------
+|
+| 
+*/
 
 
 Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function () {

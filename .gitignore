@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+# ignore images 
 /assets/images
 .env
 .env.backup
