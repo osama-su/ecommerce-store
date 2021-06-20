@@ -153,4 +153,18 @@ class MainCategoriesController extends Controller
             //return redirect()->route('admin.maincategories')->with(['error' => 'بهذه اللغه غير موجودبه']);
         }
     }
+    public function changeStatus($id)
+    {
+        try {
+            $mainCategory = MainCategory::find($id);
+            if (!$mainCategory) {
+                return redirect()->route('admin.maincategories', $id)->with(['error' => 'هذا القسم غير موجود']);
+            }
+            $newStatus = $mainCategory->active == 0 ? 1 : 0;
+            $mainCategory->update(['active'=>$newStatus]);
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم تغيير الحاله']);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }

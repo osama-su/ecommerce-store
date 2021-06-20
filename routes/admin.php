@@ -36,6 +36,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::get('edit/{id}', [Admin\MainCategoriesController::class, 'edit'])->name('admin.maincategories.edit');
         Route::post('update/{id}', [Admin\MainCategoriesController::class, 'update'])->name('admin.maincategories.update');
         Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
+        Route::get('delete/{id}', [Admin\MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
+        Route::get('changeStatus/{id}', [Admin\MainCategoriesController::class, 'changeStatus'])->name('admin.maincategories.changeStatus');
+
     });
     ## End Main Categories Routes ##
 
