@@ -143,10 +143,12 @@ class MainCategoriesController extends Controller
                 return redirect()->route('admin.maincategories', $id)->with(['error' => 'you canot delete this cat']);
             }
             //delete the photo from folder
-            
             unlink(base_path('assets/'.Str::after($mainCategory->photo,'assets/')));
-
+            //delete translated languages of main Cat
+            $mainCategory->categories()->delete();
+            
             $mainCategory->delete();
+
             return redirect()->route('admin.maincategories')->with(['success' => 'تم الحذف بنجاح']);
         } catch (\Throwable $th) {
             throw $th;
